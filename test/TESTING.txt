@@ -1,0 +1,195 @@
+the parser will split the '(', ')', '=' keyword in the output, and then read word by word regardless of the line break sign '\n', which means you could write all your commands in one line.
+the drawback of this design is if there's not enough input in one line, it might continue reading input in the next line(some people prefer, some don't)
+
+I used global variable, which drew certainly doesn't like. Actually I could make them local by passing them in all functions referring to them, but this creates duplication of code, and since this program is relatively small-scale, I think they'll be fine.
+
+Also for the dynamic-cast, due to the hierachy of my inheritance class, I had to do so, or I might have to write a virtual method to simply passing values, which makes no sense for the Expr_Op class. The other way to avoid dynamic-cast is to make new/delete old expression each time I compute the expression with new variable passing in, but this is time consuming.
+
+
+0.txt is for bad input
+please read 0.txt for discription of different types of bad input.
+run ./numerics 0.txt will get the following output:
+
+"*" takes exactly 2 arguments
+cannot parse evaluation expression
+
+"/" takes exactly 2 arguments
+cannot parse evaluation expression
+
+"%" takes exactly 2 arguments
+cannot parse evaluation expression
+
+"sin" takes exactly 1 argument
+cannot parse evaluation expression
+
+"cos" takes exactly 1 argument
+cannot parse evaluation expression
+
+"sqrt" takes exactly 1 argument
+cannot parse evaluation expression
+
+"log" takes exactly 1 argument
+cannot parse evaluation expression
+
+"pow" takes exactly 2 arguments
+cannot parse evaluation expression
+
+"+" takes exactly 2 arguments
+cannot parse evaluation expression
+
+"-" takes exactly 2 arguments
+cannot parse evaluation expression
+
+definition format: (fname arg arg ...) = expr
+
+definition lhs contains non-alphabetic id
+
+"+" takes exactly 2 arguments
+cannot parse definition expression
+
+expected "=" between lhs and rhs of definition
+
+definition lhs contains non-alphabetic id
+
+no identifier found in definition lhs
+
+invalid variable dfe+
+cannot parse evaluation expression
+
+defined  (x a)
+
+"x" is already defined
+
+"unknown" is not defined
+cannot parse definition expression
+
+"unknown" is not defined
+cannot parse evaluation expression
+
+"unknown" is not defined
+numint failed
+
+"unknown" is not defined
+mcint failed
+
+"unknown" is not defined
+
+"unknown" is not defined
+
+invalid variable a
+"sin" takes exactly 1 argument
+cannot parse evaluation expression
+
+the output also tells where went wrong
+
+1.txt is for step 1, which involves various valid define and evaluation command.
+please open read 1.txt for discription of different types of input
+run ./numerics 1.txt and it prints the following results, which are all correct answers.
+
+defined  (s a b)
+
+defined  (f a b)
+
+defined  (q a b)
+
+defined  (g q w e)
+
+defined  (h q w)
+
+-23.4 = -23.4
+
+(+ 2 3) = 5
+
+(f 2 3) = 1
+
+(s 1 2) = 4
+
+(+ 1 (+ 2 (+ 3 4))) = 10
+
+(+ (- (% 34 3) (sin 35)) (* (cos 0) (/ (pow 3 (cos 4.4)) (sqrt 12.1)))) = 1.63329
+
+(f 1 (f 2 (f 3 (f 4 5)))) = -5
+
+(g 1 1 1) = -2
+
+(g 1 (f 1 2) (g 2 2 3)) = -2
+
+(h 1 2) = -2
+
+
+2.txt is for step 2 and 3
+please read 2.txt for discription of tests.
+run ./numerics 2.txt and it prints the following results, whose error is within accepted range
+
+defined  (f a b)
+
+numint f 0.01 0 5 5 10 = 1935.01
+
+mcint f 100000 0 5 5 10 = 1926.26
+
+defined  (p d)
+
+numint p 0.001 0 1 = 3
+
+mcint p 1e+06 0 1 = 3
+
+defined  (z a b)
+
+numint z 0.01 -1 2 2 -3 = 3.71993
+
+mcint z 100000 -1 2 2 -3 = 3.68857
+
+defined  (i a b c)
+
+numint i 0.01 0 -1 0 -1 0 1 = 1.62781
+
+mcint i 1e+06 0 -1 0 -1 0 1 = 1.6019
+
+numint f 0.001 -1 1 4 5 = 40.6532
+
+mcint f 100000 -1 1 4 5 = 40.6422
+
+defined  (g a)
+
+defined  (w x y)
+
+numint g 0.001 -1 1 = 2
+
+mcint g 10000 -1 1 = 2.02384
+
+numint w 0.01 -1 1 -1 1 = 5.3336
+
+mcint w 1e+06 -1 1 -1 1 = 5.32924
+
+
+
+
+
+3.txt is for step 4
+run ./numerics 3.txt, the result also shows error message
+
+defined  (f x)
+
+max f 0.5 0 9 100000 = 45047
+
+defined  (q s b)
+
+max q 0.001 0.001 90 23 10000 = 90 23
+
+defined  (h a b)
+
+potential lose in double precision
+cannot converge within given steps
+min h 0.1 0 89 76.2 1e+06 = 5706.95 5906.79
+
+max h 0.1 0.1 89 76.2 10000 = 9.24163 -5.75229
+
+defined  (g a)
+
+potential lose in double precision
+cannot converge within given steps
+min g 0.01 0.0001 1 1000 = -9.00068
+
+potential lose in double precision
+cannot converge within given steps
+max g 0.01 0.0001 1 1000 = 11.0009

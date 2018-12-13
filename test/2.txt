@@ -1,0 +1,27 @@
+define(f a b)=(* b (+ a b))
+numint f 0.01 0 5 5 10
+mcint f 100000 0 5 5 10
+
+// one dimension
+define(p d)=3
+numint p 0.001 0 1
+mcint p 1000000 0 1
+
+// two dimension
+// notice the integral range is not always lower bound< higher bound
+define(z a b)=(* a b)
+numint z 0.01 -1 2 2 -3
+mcint z 100000 -1 2 2 -3
+
+// three dimension, calls another function
+define(i a b c)=(f (f a c) (f (p c) b))
+numint i 0.01 0 -1 0 -1 0 1
+mcint i 1000000 0 -1 0 -1 0 1
+
+// use of the same variable more than once
+define (g a) = (* (* a a) 3);
+define  (w x y) = (+ (g x) (* y y))
+numint g 0.001 -1 1
+mcint g 10000 -1 1
+numint w 0.01 -1 1 -1 1
+mcint w 1000000 -1 1 -1 1

@@ -1,0 +1,29 @@
+// simple definition
+
+define(s a b)=(+ b b)    
+
+ // recursive definition 
+define(f a b )=(- b a)
+define(q a b)=(+ a (* a b))
+define(g q w e)=(f 3 (* q w))
+define(h q w)=(g 1 (f q 2) (g w 2 3))
+
+// simple evaluation
+evaluate -23.4
+evaluate (+ 2 3)
+evaluate (f 2 3)
+evaluate(s 1 2)
+evaluate(+ 1 (+ 2 (+ 3 4)))
+
+ // this expression used all built in operations
+evaluate (+ (-(% 34 3)(sin 35))(* (cos 0)(/ (pow 3 (cos 4.4))(sqrt 12.1))))
+
+
+// recursively call functions
+ // recursively call the same function
+evaluate (f 1 (f 2 (f 3 (f 4 5))))
+ // use of recursively defined functions
+ //these should have same results 
+evaluate(g 1 1 1)
+evaluate(g 1 (f 1 2) (g 2 2 3))
+evaluate(h 1 2)

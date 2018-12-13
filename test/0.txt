@@ -1,0 +1,43 @@
+// input number of arguments not match number of arguments the function takes
+evaluate(*)
+evaluate(/)
+evaluate(%)
+evaluate(sin 3 4)
+evaluate(cos)
+evaluate(sqrt)
+evaluate(log)
+evaluate(pow)
+evaluate(+ 1 2 3)
+evaluate(- 2)
+
+// incorrect input format
+def/ne
+define f a b c
+define (f a b =(+ 3 2)
+define (f a u)=(+ )
+define (g a b) 3
+define (g aa 3)=(+ a 3)
+define()=()
+evaluate dfe+
+
+// re-define
+define (x a)=3
+define(x b)=4
+
+// use un-defined function
+
+define(new a b)=(unknown a)
+evaluate(unknown a)
+numint unknown 0.01 0 1
+mcint unknown 1000 0 1
+max unknown 0.001 0.001 0 10000
+min unknown 0.001 0.001 0 10000
+
+
+// evaluation takes variables
+evaluate (sin a)
+
+// invalid input
+max x -1 0.001 2 100
+max x 0.001 -1 2 100
+max x 0.001 0.001 2 -100
